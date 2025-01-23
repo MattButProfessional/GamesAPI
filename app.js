@@ -21,6 +21,8 @@ const characterRoutes = require("./routes/charactersRoutes");
 const genreRoutes = require("./routes/genresRoutes");
 const game_modeRoutes = require("./routes/game_modesRoutes");
 const websiteRoutes = require("./routes/websitesRoutes");
+const similarRoutes = require("./routes/similarsRoutes");
+const coverRoutes = require("./routes/coversRoutes");
  
 app.use("/api/games", gameRoutes);
 app.use("/api/platforms", platformRoutes); 
@@ -29,6 +31,8 @@ app.use("/api/characters", characterRoutes);
 app.use("/api/genres", genreRoutes); 
 app.use("/api/game_modes", game_modeRoutes); 
 app.use("/api/websites", websiteRoutes); 
+app.use("/api/similar", similarRoutes); 
+app.use("/api/covers", coverRoutes); 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec, swaggerOptions));
  
 app.listen(PORT, ()=>{
@@ -39,5 +43,7 @@ app.listen(PORT, ()=>{
     console.log(`Try going to http://localhost:${PORT}/api/genres`)
     console.log(`Try going to http://localhost:${PORT}/api/game_modes`)
     console.log(`Try going to http://localhost:${PORT}/api/websites`)
+    console.log(`Try going to http://localhost:${PORT}/api/similar`)
+    console.log(`Try going to http://localhost:${PORT}/api/covers`)
     console.log(`Swagger docs available at http://localhost:${PORT}/api-docs`)
 })
