@@ -1,3 +1,5 @@
+const settings = require("./config/settings");
+const path = require("path");
 const express = require("express");
 const swaggerUi = require("swagger-ui-express");
 const swaggerSpec = require("./swagger/swaggerConfig");
@@ -11,18 +13,17 @@ const swaggerOptions = {
   },
 };
 
-const PORT = 3001;
 const app = express();
 
-const gameRoutes = require("./routes/gamesRoutes");
-const platformRoutes = require("./routes/platformsRoutes");
-const screenshotRoutes = require("./routes/screenshotsRoutes");
-const characterRoutes = require("./routes/charactersRoutes");
-const genreRoutes = require("./routes/genresRoutes");
-const game_modeRoutes = require("./routes/game_modesRoutes");
-const websiteRoutes = require("./routes/websitesRoutes");
-const similarRoutes = require("./routes/similarsRoutes");
-const coverRoutes = require("./routes/coversRoutes");
+const gameRoutes = require("./routes/api/gamesRoutes");
+const platformRoutes = require("./routes/api/platformsRoutes");
+const screenshotRoutes = require("./routes/api/screenshotsRoutes");
+const characterRoutes = require("./routes/api/charactersRoutes");
+const genreRoutes = require("./routes/api/genresRoutes");
+const game_modeRoutes = require("./routes/api/game_modesRoutes");
+const websiteRoutes = require("./routes/api/websitesRoutes");
+const similarRoutes = require("./routes/api/similarsRoutes");
+const coverRoutes = require("./routes/api/coversRoutes");
 
 app.use("/api/games", gameRoutes);
 app.use("/api/platforms", platformRoutes);
@@ -39,6 +40,16 @@ app.use(
   swaggerUi.setup(swaggerSpec, swaggerOptions)
 );
 
-app.listen(PORT, () => {
-  console.log(`Swagger docs available at http://localhost:${PORT}/api-docs`);
+const homeRoute = require("./routes/views/homeRoutes");
+app.use("/", homeRoute);
+app.use(express.static(__dirname + "/public"));
+
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "views"));
+
+app.listen(settings.PORT, () => {
+  console.log(`${settings.ROOT}:${settings.PORT}`);
+  console.log(
+    `Swagger docs available at ${settings.ROOT}:${settings.PORT}/api-docs`
+  );
 });
