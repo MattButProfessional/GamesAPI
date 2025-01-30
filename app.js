@@ -40,7 +40,7 @@ app.use(
   swaggerUi.setup(swaggerSpec, swaggerOptions)
 );
 
-const homeRoute = require("./routes/views/homeRoutes");
+const homeRoute = require("./routes/views/webpageRoutes");
 app.use("/", homeRoute);
 app.use(express.static(__dirname + "/public"));
 

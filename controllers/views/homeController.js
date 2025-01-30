@@ -9,6 +9,7 @@ async function renderHomePage(req, res) {
         params: req.query,
       }
     );
+    data = response.data;
     for (game of data) {
       const cover = await axios.get(
         `${settings.ROOT}:${settings.PORT}/api/covers`,
@@ -16,7 +17,6 @@ async function renderHomePage(req, res) {
       );
       game.cover = cover.data[0] ? cover.data[0].url : "";
     }
-    data = response.data;
   }
   res.render("home", {
     title: "Games!",
