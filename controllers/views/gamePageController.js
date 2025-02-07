@@ -11,7 +11,19 @@ async function renderGamePage(req, res) {
 
   const genres = await getGameDataFromEndpoint(req.params.id, "genres");
   data.genres = genres;
-  console.log(data);
+
+  const gameModes = await getGameDataFromEndpoint(req.params.id, "game_modes");
+  data.gameModes = gameModes;
+
+  const gamePlatforms = await getGameDataFromEndpoint(
+    req.params.id,
+    "platforms"
+  );
+  data.gamePlatforms = gamePlatforms;
+
+  const characters = await getGameDataFromEndpoint(req.params.id, "characters");
+  data.characters = characters;
+
   res.render("game", {
     title: "CMP - IGDB: " + data.name,
     gameData: data,

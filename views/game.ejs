@@ -39,15 +39,27 @@
         <div class="col-md-4">
             <div class="p-3">
                 <h2>Game Modes</h2>
-                <div class="no-data"><p>No data found</p></div>
-                <ul id="gameModes"></ul>
+                <% if(!gameData.gameModes || gameData.length ==0) {%>
+                    <div class="no-data"><p>No data found</p></div>
+                    <%}%>
+                    <ul id="gameModes">
+                        <% for(let mode of gameData.gameModes){ %>
+                            <li><%= mode.name%></li>
+                        <%}%>
+                        </ul>
             </div>
         </div>
         <div class="col-md-4">
             <div class="p-3">
                 <h2>Platforms</h2>
+                <% if(!gameData.gamePlatforms || gameData.length ==0) {%>
                 <div class="no-data"><p>No data found</p></div>
-                <ul id="gamePlatforms"></ul>
+                <%}%>
+                <ul id="gamePlatforms">
+                    <% for(let platform of gameData.gamePlatforms){ %>
+                        <li><%= platform.name%></li>
+                    <%}%>
+                    </ul>
             </div>
 
         </div>
@@ -56,9 +68,14 @@
         <div class="col-md-12">
             <div class="p-3">
                 <h2>Characters</h2>
-                <div class="no-data"><p>No data found</p></div>
-                <div id="gameCharacters">
-    
+                <% if(!gameData.characters || gameData.length ==0) {%>
+                    <div class="no-data"><p>No data found</p></div>
+                    <%}%>
+                    <ul id="gameCharacters">
+                        <% for(let character of gameData.characters){ %>
+                            <li><%= character.name%></li>
+                        <%}%>
+                        </ul>
                 </div>
             </div>
         </div>
