@@ -24,6 +24,18 @@ async function renderGamePage(req, res) {
   const characters = await getGameDataFromEndpoint(req.params.id, "characters");
   data.characters = characters;
 
+  const websites = await getGameDataFromEndpoint(req.params.id, "websites");
+  data.websites = websites;
+
+  const screenshots = await getGameDataFromEndpoint(
+    req.params.id,
+    "screenshots"
+  );
+  data.screenshots = screenshots;
+
+  const similarGames = await getGameDataFromEndpoint(req.params.id, "similar");
+  data.similarGames = similarGames;
+
   res.render("game", {
     title: "CMP - IGDB: " + data.name,
     gameData: data,

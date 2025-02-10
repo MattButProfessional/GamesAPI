@@ -37,10 +37,6 @@ body {
   }
 }
 
-#gameCharacters {
-  display: flex;
-  flex-wrap: wrap;
-}
 #gameCharacters button {
   flex: 1 0 20%;
   margin: 5px;
